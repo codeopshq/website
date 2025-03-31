@@ -8,7 +8,7 @@ pub fn navbar() -> Html {
         <nav class="h-16 px-8 py-10 shadow-xl">
             <div class="container flex mx-auto gap-6 items-center h-full">
                 // <h1 class="font-bold text-2xl text-white">{"CodeOps HQ"}</h1>
-                <a href="/"><img class="w-20" src="assets/img/codeops-hq-logo-icon.svg" alt="Logo" /></a>
+                <a href="/"><img class="h-20" src="assets/svg/codeops-hq-side-logo.svg" alt="CodeOps HQ" /></a>
                 <div class="flex-1"></div>
                 {for links.iter().map(|(label, href)| html! {
                 <a class={link_classes} href={*href}>{label}</a>
