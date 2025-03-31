@@ -9,7 +9,7 @@ pub fn app() -> Html {
             <container class="flex flex-col h-screen">
                 <Navbar />
                 <div class="flex py-16 items-center justify-center">
-                      <h2 class="text-5xl bg-green-400 px-4 py-2 font-extrabold text-gray-900">{"Our Latest Video"}</h2>
+                      <h2 class="text-5xl bg-green-400 px-4 py-2 font-extrabold text-gray-100 dark:text-gray-900">{"Our Latest Video"}</h2>
                 </div>
                 <div class="flex pb-16 px-8 items-center justify-center">
                     // <img class="w-80 mr-9" src="assets/img/codeops-hq-logo.svg" alt="Logo" />
@@ -45,7 +45,7 @@ pub fn app() -> Html {
 
 fn view_card(title: &'static str, img_url: Option<&'static str>, content: Html) -> Html {
     html! {
-        <div class="w-96 rounded bg-gray-300 dark:bg-gray-800 p-6 shadow-lg">
+        <div class="w-96 rounded bg-gray-200 dark:bg-gray-800 p-6 shadow-lg">
             {for img_url.map(|url| html! {
                 <img class="float-right w-20 invert dark:invert-0" src={url} alt="Logo" />
             })}
