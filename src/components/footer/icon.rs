@@ -17,6 +17,7 @@ pub fn icon(props: &Props) -> Html {
         "tiktok" => include_str!("../../../assets/svg/tiktok.svg"),
         "instagram" => include_str!("../../../assets/svg/instagram.svg"),
         "linkedin" => include_str!("../../../assets/svg/linkedin.svg"),
+        "twitch" => include_str!("../../../assets/svg/twitch.svg"),
         // Add more cases as needed
         _ => "",
     };
