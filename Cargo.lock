@@ -121,6 +121,7 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "wasm-bindgen",
+ "web-sys",
  "yew",
  "yew-router",
 ]
