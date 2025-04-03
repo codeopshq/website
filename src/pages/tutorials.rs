@@ -10,7 +10,7 @@ pub fn tutorials() -> Html {
     html! {
     <>
         <div class="flex py-16 items-center justify-center">
-            <h2 class="text-5xl px-4 py-2 font-extrabold">{"Tutorials Videos"}</h2>
+            <h2 class="text-5xl bg-orange-400 text-gray-100 dark:text-gray-900 px-4 py-2 font-extrabold">{"Tutorials Videos"}</h2>
         </div>
         <ChannelVideos />
     </>

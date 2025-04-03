@@ -28,7 +28,7 @@ pub fn footer() -> Html {
 
                 </div>
 
-                <h6>{ "Helpful Links" }</h6>
+                /* <h6>{ "Helpful Links" }</h6>
 
                 <div class="py-3">
                     <a href="/courses">{ "Courses" }</a>{" | "}
@@ -38,7 +38,7 @@ pub fn footer() -> Html {
                     <a href="/contributors">{ "Contrib" }</a>{" | "}
                     <a href="/privacy">{ "Privacy" }</a>{" | "}
                     <a href="/terms">{ "Terms" }</a>
-                </div>
+                </div> */
 
 
                 <div class="text-xs">

@@ -2,7 +2,9 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 use crate::components::{footer::footer::Footer, navbar::navbar::Navbar};
-use crate::pages::{home::Home, not_found::NotFound, tutorials::Tutorials};
+use crate::pages::{
+    about::About, contact::Contact, home::Home, not_found::NotFound, tutorials::Tutorials,
+};
 use crate::router::Route;
 
 #[function_component(App)]
@@ -31,8 +33,8 @@ fn switch(route: Route) -> Html {
     match route {
         Route::Home => html! { <Home /> },
         Route::Tutorials => html! { <Tutorials /> },
-        Route::About => html! { <h1>{ "About" }</h1> },
-        Route::Contact => html! { <h1>{ "Contact" }</h1> },
+        Route::About => html! { <About /> },
+        Route::Contact => html! { <Contact /> },
         Route::NotFound => html! { <NotFound /> },
     }
 }

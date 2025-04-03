@@ -114,13 +114,15 @@ pub fn channel_videos() -> Html {
                     }) }
                 </div>
                 if page_token.is_some() {
+                    <div class="flex py-2 items-center justify-center">
                     <button
                         onclick={on_load_more}
                         disabled={*loading}
-                        class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                     >
                         { "Load More" }
                     </button>
+                </div>
                 }
             }
         </div>
