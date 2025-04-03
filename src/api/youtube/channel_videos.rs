@@ -1,6 +1,7 @@
 use crate::api::youtube::youtube_api::{
     get_channel_uploads_playlist, get_playlist_videos, PlaylistItem,
 };
+use gloo_console::log;
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 
@@ -16,6 +17,7 @@ pub fn channel_videos() -> Html {
     let channel_id = "UCbdSso-vnvKjI6E2h_hDLFA";
 
     {
+        //log!("initial load", api_key, channel_id);
         let videos = videos.clone();
         let loading = loading.clone();
         let error = error.clone();
@@ -45,6 +47,7 @@ pub fn channel_videos() -> Html {
                 }
                 loading.set(false);
             });
+            log!("cleanup");
             || ()
         });
     }
