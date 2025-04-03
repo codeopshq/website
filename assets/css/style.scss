@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
