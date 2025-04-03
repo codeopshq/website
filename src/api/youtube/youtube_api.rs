@@ -54,6 +54,7 @@ pub struct Thumbnail {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PlaylistResponse {
     pub items: Vec<PlaylistItem>,
+    #[serde(rename = "nextPageToken")]
     pub next_page_token: Option<String>,
 }
 
