@@ -12,8 +12,8 @@ pub fn channel_videos() -> Html {
     let page_token = use_state(|| Option::<String>::None);
     let playlist_id = use_state(|| Option::<String>::None);
 
-    let api_key = "AIzaSyB02i2UtqzpSILfuFAvTj23fXqqjnO6hhw";
-    let channel_id = "UCbdSso-vnvKjI6E2h_hDLFA";
+    let api_key = env!("YOUTUBE_API_KEY");
+    let channel_id = env!("YOUTUBE_CHANNEL_ID");
 
     {
         let videos = videos.clone();

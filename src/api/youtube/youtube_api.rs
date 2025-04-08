@@ -60,8 +60,10 @@ pub struct PlaylistResponse {
 
 pub async fn get_channel_uploads_playlist(api_key: &str, channel_id: &str) -> Result<String> {
     let url = format!(
-        "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id={}&key={}",
-        channel_id, api_key
+        "{}/channels?part=contentDetails&id={}&key={}",
+        env!("YOUTUBE_API_URL"),
+        channel_id,
+        api_key
     );
 
     let response = Request::get(&url).send().await?;
@@ -81,8 +83,11 @@ pub async fn get_playlist_videos(
     page_token: Option<&str>,
 ) -> Result<PlaylistResponse> {
     let mut url = format!(
-        "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId={}&key={}&maxResults={}",
-        playlist_id, api_key, 6
+        "{}/playlistItems?part=snippet,contentDetails&playlistId={}&key={}&maxResults={}",
+        env!("YOUTUBE_API_URL"),
+        playlist_id,
+        api_key,
+        6
     );
 
     if let Some(token) = page_token {
