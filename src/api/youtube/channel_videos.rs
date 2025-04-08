@@ -4,6 +4,10 @@ use crate::api::youtube::youtube_api::{
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 
+use crate::components::{
+    load_more_section::LoadMoreSection, skeleton_grid::SkeletonGrid, video_grid::VideoGrid,
+};
+
 #[function_component(ChannelVideos)]
 pub fn channel_videos() -> Html {
     let videos = use_state(Vec::<PlaylistItem>::new);
@@ -86,44 +90,18 @@ pub fn channel_videos() -> Html {
     html! {
         <div class="container mx-auto p-4">
             if *loading {
-                <p>{"Loading..."}</p>
+                <SkeletonGrid />
             } else if let Some(err) = &*error {
                 <p class="text-red-500">{ err }</p>
             } else {
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    { for videos.iter().map(|video| {
-                        html! {
-                            <div class="w-full overflow-hidden shadow-xl bg-gray-300 hover:bg-gray-400 dark:bg-gray-700/40 dark:hover:bg-gray-700/60 y-6 rounded-xl border border-gray-700">
-                                <a href={format!("https://youtu.be/{}", video.content_details.video_id)} target="_blank" class="no-underline">
-                                    <img
-                                        class="w-full m-0 mb-1 rounded-t-xl hover:scale-105 transition-transform ease-in-out duration-500"
-                                        src={video.snippet.thumbnails.medium.url.clone()}
-                                        alt={video.snippet.title.clone()}
-                                    />
-                                    <section class="p-5">
-                                        <h5 class="text-lg font-bold tracking-tight text-gray-900 dark:text-white mb-3">{ video.snippet.title.clone() }</h5>
-                                        <p class="text-gray-700 dark:text-gray-400 min-h-[100px]">{ video.snippet.title.clone() }</p>
-                                        <span class="text-gray-700 dark:text-gray-400">{ video.snippet.published_at.clone() }</span>
-                                        <span class="tag inline-flex bg-green-500 items-center rounded-md mx-1 text-sm font-medium px-1 py-1">
-                                            {"#Rust"}
-                                        </span>
-                                    </section>
-                                </a>
-                            </div>
-                        }
-                    }) }
-                </div>
-                if page_token.is_some() {
-                    <div class="flex py-2 items-center justify-center">
-                    <button
-                        onclick={on_load_more}
-                        disabled={*loading}
-                        class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
-                    >
-                        { "Load More" }
-                    </button>
-                </div>
-                }
+                <VideoGrid
+                    videos={(*videos).clone()}
+                />
+                <LoadMoreSection
+                    loading={*loading}
+                    page_token_exists={page_token.is_some()}
+                    on_load_more={on_load_more.clone()}
+                 />
             }
         </div>
     }

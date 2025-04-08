@@ -17,14 +17,14 @@ pub struct RelatedPlaylists {
     pub uploads: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct PlaylistItem {
     pub snippet: Snippet,
     #[serde(rename = "contentDetails")]
     pub content_details: ContentDetailsItem,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Snippet {
     pub title: String,
     pub description: String,
@@ -33,7 +33,7 @@ pub struct Snippet {
     pub published_at: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct ContentDetailsItem {
     #[serde(rename = "videoId")]
     pub video_id: String,
@@ -41,12 +41,12 @@ pub struct ContentDetailsItem {
     pub video_published_at: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Thumbnails {
     pub medium: Thumbnail,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Thumbnail {
     pub url: String,
 }
