@@ -8,7 +8,7 @@ repository = "https://github.com/codeopshq/website"
 license = "MIT"
 keywords = ["yew", "trunk"]
 categories = ["gui", "wasm", "web-programming"]
-build = "src/build.rs"
+# build = "src/build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
@@ -26,4 +26,4 @@ gloo-console = "0.3.0"
 env = "1.0.1"
 
 [build-dependencies]
-dotenvy = "0.15"
+# dotenvy = "0.15"

@@ -26,3 +26,9 @@ jobs:
        with:
          push: true
          tags: ${{ vars.DOCKERHUB_USERNAME }}/codeops-hq-website:latest
+         build-args: |
+           ARG_YOUTUBE_API_KEY=${{ secrets.YOUTUBE_API_KEY }}
+           ARG_YOUTUBE_API_URL=${{ vars.YOUTUBE_API_URL }}
+           ARG_YOUTUBE_CHANNEL_ID=${{ vars.YOUTUBE_CHANNEL_ID }}
+         cache-from: type=gha
+         cache-to: type=gha,mode=max

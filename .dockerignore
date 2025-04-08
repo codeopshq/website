@@ -1,0 +1,9 @@
+/.git
+/.github
+/dist
+.env
+.env.example
+.gitignore
+README.md
+Dockerfile
+LICENSE-MIT

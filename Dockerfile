@@ -8,6 +8,16 @@ RUN cargo install --locked trunk
 
 WORKDIR /app
 
+# --- Define build arguments ---
+ARG ARG_YOUTUBE_API_KEY
+ARG ARG_YOUTUBE_API_URL
+ARG ARG_YOUTUBE_CHANNEL_ID
+
+# --- Set environment variables for the build process ---
+ENV YOUTUBE_API_KEY=$ARG_YOUTUBE_API_KEY
+ENV YOUTUBE_API_URL=$ARG_YOUTUBE_API_URL
+ENV YOUTUBE_CHANNEL_ID=$ARG_YOUTUBE_CHANNEL_ID
+
 COPY . .
 
 RUN trunk build --release
