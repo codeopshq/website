@@ -62,6 +62,7 @@ pub async fn get_channel_uploads_playlist(api_key: &str, channel_id: &str) -> Re
     let url = format!(
         "{}/channels?part=contentDetails&id={}&key={}",
         env!("YOUTUBE_API_URL"),
+        //std::env::var("YOUTUBE_CHANNEL_ID").unwrap(),
         channel_id,
         api_key
     );
@@ -85,6 +86,7 @@ pub async fn get_playlist_videos(
     let mut url = format!(
         "{}/playlistItems?part=snippet,contentDetails&playlistId={}&key={}&maxResults={}",
         env!("YOUTUBE_API_URL"),
+        //std::env::var("YOUTUBE_CHANNEL_ID").unwrap(),
         playlist_id,
         api_key,
         6
