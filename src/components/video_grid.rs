@@ -12,10 +12,10 @@ pub struct VideoGridProps {
 pub fn video_grid(VideoGridProps { videos }: &VideoGridProps) -> Html {
     html! {
         <>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="flex grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             { for videos.iter().enumerate().map(|(index, video)| {
                 html! {
-                    <VideoCard video={video.clone()} index={index} />
+                    <VideoCard key={index} video={video.clone()} index={index} />
                 }
             }) }
         </div>

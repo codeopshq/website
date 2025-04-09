@@ -13,7 +13,7 @@ pub fn about() -> Html {
     // Add a container with padding for overall spacing
     <div class="container mx-auto px-4 py-12 md:py-16 lg:py-20">
         // Use a background color for the card effect, with dark mode support
-        <div class="rounded-xl shadow-lg overflow-hidden">
+        <div class="rounded-xl overflow-hidden">
             // Responsive layout: stack columns on mobile, side-by-side on large screens
             <div class="flex flex-col lg:flex-row lg:items-center">
 
