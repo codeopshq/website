@@ -9,9 +9,17 @@ struct Card {
     tag: String,
 }
 
+#[derive(Clone, PartialEq)]
+struct Tool {
+    name: String,
+    description: String,
+    icon: String,
+    link: String,
+}
+
 #[function_component(Home)]
 pub fn home() -> Html {
-    // Example dynamic data
+    // Example dynamic data for cards
     let cards = vec![
         Card {
             title: "Happy Hacking Keyboard Type-S Review".to_string(),
@@ -26,6 +34,73 @@ pub fn home() -> Html {
             image_url: "https://typecraft.dev/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTE1LCJwdXIiOiJibG9iX2lkIn19--005d7083d27c3ed7a2df42e1f124506ee0eb0ef7/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJwbmciLCJyZXNpemVfdG9fbGltaXQiOls0MDAsNDAwXX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb8bf42cd8dab2097a8e332d051d5d0fee03c71e/registers-1.png".to_string(),
             link: "/tutorial/how-well-do-you-know-vim-registers".to_string(),
             tag: "PUBLIC".to_string(),
+        },
+    ];
+
+    // Example dynamic data for tools
+    let tools = vec![
+        Tool {
+            name: "Neovim".to_string(),
+            description: "A highly configurable text editor built on Vim.".to_string(),
+            icon: "assets/svg/neovim.svg".to_string(),
+            link: "https://neovim.io/".to_string(),
+        },
+        Tool {
+            name: "Git".to_string(),
+            description: "Distributed version control system.".to_string(),
+            icon: "assets/svg/git.svg".to_string(),
+            link: "https://git-scm.com/".to_string(),
+        },
+        Tool {
+            name: "Tmux".to_string(),
+            description: "A terminal multiplexer and interactive session manager.".to_string(),
+            icon: "assets/svg/tmux.svg".to_string(),
+            link: "https://tmux.github.io/".to_string(),
+        },
+        Tool {
+            name: "Rust Programming Language".to_string(),
+            description: "A systems programming language focused on safety and performance."
+                .to_string(),
+            icon: "assets/svg/rust.svg".to_string(),
+            link: "https://www.rust-lang.org/".to_string(),
+        },
+        Tool {
+            name: "GitHub".to_string(),
+            description: "A code hosting platform for version control and collaboration."
+                .to_string(),
+            icon: "assets/svg/github-2.svg".to_string(),
+            link: "https://github.com/".to_string(),
+        },
+        Tool {
+            name: "GitLab".to_string(),
+            description: "A code hosting platform for version control and collaboration."
+                .to_string(),
+            icon: "assets/svg/gitlab.svg".to_string(),
+            link: "https://gitlab.com/".to_string(),
+        },
+        Tool {
+            name: "Nginx".to_string(),
+            description: "A web server and reverse proxy.".to_string(),
+            icon: "assets/svg/nginx.svg".to_string(),
+            link: "https://www.nginx.com/".to_string(),
+        },
+        //Tool {
+        //    name: "Visual Studio Code".to_string(),
+        //    description: "A lightweight but powerful source code editor.".to_string(),
+        //    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png".to_string(),
+        //    link: "https://code.visualstudio.com/".to_string(),
+        //},
+        //Tool {
+        //    name: "GitHub Copilot".to_string(),
+        //    description: "AI-powered coding assistant for faster development.".to_string(),
+        //    icon: "https://github.githubassets.com/images/modules/site/features/copilot-icon.svg".to_string(),
+        //    link: "https://copilot.github.com/".to_string(),
+        //},
+        Tool {
+            name: "Postman".to_string(),
+            description: "API development environment for testing and collaboration.".to_string(),
+            icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg".to_string(),
+            link: "https://www.postman.com/".to_string(),
         },
     ];
 
@@ -93,6 +168,27 @@ pub fn home() -> Html {
                         </div>
                     }
                 }) }
+            </section>
+
+            // New Section: Essential Developer Tools
+            <section class="py-16 bg-gray-100 dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-8">{"Essential Developer Tools"}</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        { for tools.iter().map(|tool| {
+                            html! {
+                                <div class="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-6 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                                    <img class="w-16 h-16 mx-auto mb-4" src={tool.icon.clone()} alt={tool.name.clone()} />
+                                    <h3 class="text-lg font-bold text-center text-gray-800 dark:text-white">{ &tool.name }</h3>
+                                    <p class="mt-2 text-sm text-center text-gray-600 dark:text-gray-400">{ &tool.description }</p>
+                                    <a href={tool.link.clone()} target="_blank" class="mt-4 block text-center text-blue-500 hover:text-blue-700 font-medium">
+                                        { "Learn More" }
+                                    </a>
+                                </div>
+                            }
+                        }) }
+                    </div>
+                </div>
             </section>
         </>
     }
