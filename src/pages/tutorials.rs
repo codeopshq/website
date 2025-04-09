@@ -1,12 +1,9 @@
 use yew::prelude::*;
 
-//use crate::api::tutorials::get_tutorials;
 use crate::api::youtube::channel_videos::ChannelVideos;
 
 #[function_component(Tutorials)]
 pub fn tutorials() -> Html {
-    //let tutorials = get_tutorials();
-
     html! {
     <>
         <div class="flex py-16 items-center justify-center">
