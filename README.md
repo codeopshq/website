@@ -173,7 +173,7 @@ If you encounter any issues or have suggestions for improvements, please open an
 
 ## License
 
-This project is dual-licensed under the [MIT](LICENSE-MIT) licenses.
+This project is licensed under the [MIT](LICENSE-MIT) licenses.
 
 ## Contact
 
