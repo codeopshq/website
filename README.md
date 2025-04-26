@@ -173,9 +173,7 @@ If you encounter any issues or have suggestions for improvements, please open an
 
 ## License
 
-This project is dual-licensed under the [MIT](LICENSE-MIT) and [Apache 2.0](LICENSE-APACHE) licenses. You may choose either at your discretion.
-
-There are two placeholders in the MIT license you need to fill out: `{{year}}` and `{{authors}}`.
+This project is dual-licensed under the [MIT](LICENSE-MIT) licenses.
 
 ## Contact
 
