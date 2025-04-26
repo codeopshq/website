@@ -1,76 +1,195 @@
-# Yew Trunk Template
+# CodeOps HQ YouTube Channel Website
 
-This is a fairly minimal template for a Yew app that's built with [Trunk].
+![CodeOps HQ Logo](assets/img/codeops-hq-logo.svg)
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Support](#support)
+
+## Introduction
+
+Welcome to the **CodeOps HQ YouTube Channel Website**, a modern web application built with [Yew](https://yew.rs/) and [Trunk](https://github.com/thedodd/trunk) for seamless Rust-based frontend development. This website serves as a centralized hub for showcasing your YouTube tutorials, channel videos, and providing visitors with an engaging platform to explore your content.
+
+![Screenshot](assets/img/screenshot.png)
+
+## Features
+
+- **Responsive Design**: Optimized for various devices to ensure a seamless viewing experience.
+- **YouTube Integration**: Displays your latest channel videos directly on the website.
+- **Dark Mode Support**: Toggle between light and dark themes for comfortable browsing.
+- **Interactive Components**: Includes dynamic sections like tutorials and about pages.
+- **Optimized Performance**: Built with Rust and WASM for fast and efficient performance.
+
+## Installation
+
+### Prerequisites
+
+- **Rust**: Ensure you have Rust installed. If not, install it from [here](https://www.rust-lang.org/tools/install).
+- **Trunk**: Install Trunk and WASM Bindgen CLI using Cargo:
+
+  ```bash
+  cargo install trunk wasm-bindgen-cli
+  ```
+
+### Setting Up the Project
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/codeopshq/website.git
+   cd website
+   ```
+
+2. **Add WASM Target**
+
+   ```bash
+   rustup target add wasm32-unknown-unknown
+   ```
+
+3. **Install Dependencies**
+
+   Ensure all dependencies are specified in `Cargo.toml`.
 
 ## Usage
 
-For a more thorough explanation of Trunk and its features, please head over to the [repository][trunk].
+### Running the Development Server
 
-### Installation
-
-If you don't already have it installed, it's time to install Rust: <https://www.rust-lang.org/tools/install>.
-The rest of this guide assumes a typical Rust installation which contains both `rustup` and Cargo.
-
-To compile Rust to WASM, we need to have the `wasm32-unknown-unknown` target installed.
-If you don't already have it, install it with the following command:
-
-```bash
-rustup target add wasm32-unknown-unknown
-```
-
-Now that we have our basics covered, it's time to install the star of the show: [Trunk].
-Simply run the following command to install it:
-
-```bash
-cargo install trunk wasm-bindgen-cli
-```
-
-That's it, we're done!
-
-### Running
+Start the development server with live-reloading:
 
 ```bash
 trunk serve
 ```
 
-Rebuilds the app whenever a change is detected and runs a local server to host it.
+This command rebuilds the app whenever changes are detected and hosts it locally.
 
-There's also the `trunk watch` command which does the same thing but without hosting it.
+### Building for Release
 
-### Release
+Generate an optimized build for production:
 
 ```bash
 trunk build --release
 ```
 
-This builds the app in release mode similar to `cargo build --release`.
-You can also pass the `--release` flag to `trunk serve` if you need to get every last drop of performance.
+The output will be located in the `dist` directory by default. You can also pass the `--release` flag to `trunk serve` for performance-focused development.
 
-Unless overwritten, the output will be located in the `dist` directory.
+## Project Structure
 
-## Using this template
+```
+├── README.md
+├── Cargo.toml
+├── index.html
+├── index.scss
+├── LICENSE-MIT
+├── src
+│   ├── api
+│   │   └── youtube
+│   │       └── channel_videos.rs
+│   ├── components
+│   │   └── footer
+│   │       └── footer.rs
+│   └── pages
+│       ├── about.rs
+│       └── tutorials.rs
+│ 
+│ 
+├── assests
+│   ├── css
+│   ├── icons
+│   ├── img
+│   └── svg
+│
+```
 
-There are a few things you have to adjust when adopting this template.
+### Highlights from the Codebase
 
-### Remove example code
+- **`src/api/youtube/channel_videos.rs`**: Handles fetching and displaying videos from your YouTube channel.
 
-The code in [src/main.rs](src/main.rs) specific to the example is limited to only the `view` method.
-There is, however, a fair bit of Sass in [index.scss](index.scss) you can remove.
+  ```rust
+  // src/api/youtube/channel_videos.rs
+  use crate::api::youtube::youtube_api::{
+      get_channel_uploads_playlist, get_playlist_videos, PlaylistItem,
+  };
+  use wasm_bindgen_futures::spawn_local;
+  use yew::prelude::*;
 
-### Update metadata
+  use crate::components::{
+      load_more_section::LoadMoreSection, skeleton_grid::SkeletonGrid, video_grid::VideoGrid,
+  };
 
-Update the `name`, `version`, `description` and `repository` fields in the [Cargo.toml](Cargo.toml) file.
-The [index.html](index.html) file also contains a `<title>` tag that needs updating.
+  #[function_component(ChannelVideos)]
+  ```
 
-If you cloned this repo without using `cargo generate`, you can safely remove the `cargo-generate` directory.
+- **`src/pages/tutorials.rs`**: Renders the tutorials section showcasing your YouTube tutorials.
 
-Finally, you should update this very `README` file to be about your app.
+  ```rust
+  // src/pages/tutorials.rs
+  use yew::prelude::*;
 
-### License
+  use crate::api::youtube::channel_videos::ChannelVideos;
 
-The template ships with both the Apache and MIT license.
-If you don't want to have your app dual licensed, just remove one (or both) of the files and update the `license` field in `Cargo.toml`.
+  #[function_component(Tutorials)]
+  pub fn tutorials() -> Html {
+      html! {
+      <>
+          <div class="flex py-16 items-center justify-center">
+              <h2 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-blue-500">
+                  {"Tutorials Videos"}
+              </h2>
+          </div>
+          <ChannelVideos />
+      </>
+      }
+  }
+  ```
 
-There are two empty spaces in the MIT license you need to fill out: `{{year}}` and `{{authors}}`.
+- **`src/pages/about.rs`**: Provides information about the YouTube channel and subscription links.
 
-[trunk]: https://github.com/thedodd/trunk
+  ```rust
+  // src/pages/about.rs
+  pub fn about() -> Html {
+      // Placeholder for the YouTube Channel ID - replace with the actual ID
+      const YOUTUBE_CHANNEL_ID: &str = "@CodeOpsHQ";
+      let youtube_subscribe_link = format!(
+          "https://www.youtube.com/{}?sub_confirmation=1",
+          YOUTUBE_CHANNEL_ID
+      );
+
+      html! {
+      // Add a container with padding for overall spacing
+  }
+  ```
+
+## Contributing
+
+If you encounter any issues or have suggestions for improvements, please open an issue on our [GitHub repository](https://github.com/codeopshq/website/issues) or submit a pull request.
+
+## License
+
+This project is dual-licensed under the [MIT](LICENSE-MIT) and [Apache 2.0](LICENSE-APACHE) licenses. You may choose either at your discretion.
+
+There are two placeholders in the MIT license you need to fill out: `{{year}}` and `{{authors}}`.
+
+## Contact
+
+For any inquiries or support, please contact us via email or open an issue on our [GitHub repository](https://github.com/codeopshq/website/issues).
+
+## Support
+
+If you like this project, please consider supporting us:
+
+- [GitHub Sponsors](https://github.com/sponsors/codeopshq)
+- [Buy us a coffee](https://www.buymeacoffee.com/codeopshq)
+
+---
+
+Thank you for visiting the CodeOps HQ YouTube Channel Website! We hope this platform enhances your learning experience and provides valuable resources for your development journey.
+
+---

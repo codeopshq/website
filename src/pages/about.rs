@@ -32,7 +32,7 @@ pub fn about() -> Html {
                 // Takes full width on mobile, remaining width on large screens
                 <div class="w-full lg:w-3/5 p-6 sm:p-8 md:p-10 lg:p-12">
                     // Main Title
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-indigo-600 dark:text-blue-400 uppercase mb-2">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-indigo-600 dark:text-blue-400 mb-2">
                         { "CodeOps HQ" }
                     </h1>
                     // Subtitle (using a paragraph tag now)
