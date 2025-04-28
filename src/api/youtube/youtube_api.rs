@@ -58,6 +58,11 @@ pub struct PlaylistResponse {
     pub next_page_token: Option<String>,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct YouTubeResponse {
+    pub items: Vec<PlaylistItem>,
+}
+
 pub async fn get_channel_uploads_playlist(api_key: &str, channel_id: &str) -> Result<String> {
     let url = format!(
         "{}/channels?part=contentDetails&id={}&key={}",
@@ -100,4 +105,24 @@ pub async fn get_playlist_videos(
     let playlist_response: PlaylistResponse = response.json().await?;
 
     Ok(playlist_response)
+}
+
+pub async fn fetch_latest_video() -> Result<PlaylistItem> {
+    let api_key = env!("YOUTUBE_API_KEY");
+    let channel_id = env!("YOUTUBE_CHANNEL_ID");
+
+    let url = format!(
+        "{}/playlistItems?part=snippet,contentDetails&playlistId={}&key={}&maxResults={}",
+        env!("YOUTUBE_API_URL"),
+        //std::env::var("YOUTUBE_CHANNEL_ID").unwrap(),
+        get_channel_uploads_playlist(&api_key, &channel_id).await?,
+        api_key,
+        1
+    );
+
+    let response = Request::get(&url).send().await?;
+    let data: YouTubeResponse = response.json().await?;
+    let item = data.items.get(0).ok_or(anyhow!("No videos found"))?.clone();
+
+    Ok(item)
 }

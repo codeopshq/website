@@ -1,5 +1,7 @@
 use yew::prelude::*;
 
+use crate::api::youtube::latest_video::LatestVideo;
+
 #[derive(Clone, PartialEq)]
 struct Card {
     title: String,
@@ -102,6 +104,13 @@ pub fn home() -> Html {
             icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg".to_string(),
             link: "https://www.postman.com/".to_string(),
         },
+        Tool {
+            name: "Docker".to_string(),
+            description: "A platform for building, shipping, and running distributed applications."
+                .to_string(),
+            icon: "https://www.vectorlogo.zone/logos/docker/docker-icon.svg".to_string(),
+            link: "https://www.docker.com/".to_string(),
+        },
     ];
 
     html! {
@@ -115,15 +124,7 @@ pub fn home() -> Html {
             <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
                 // Featured Video Section
                 <div class="col-span-1 md:col-span-2 lg:col-span-2 row-span-2">
-                    <div class="rounded-2xl bg-gray-300 dark:bg-gray-700/40 backdrop-blur-sm ring-1 ring-white/10 h-full transition-all hover:bg-gray-300/50 dark:hover:bg-gray-700/60 duration-300">
-                        <div class="aspect-video rounded-t-2xl overflow-hidden">
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/F2X9jjCT17E?si=qYKSexnLaNuss6ZZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=true></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400">{ "Welcome to CodeOps HQ" }</h3>
-                            <p class="mt-2 text-xl font-medium text-black dark:text-white">{ "Love What You Build" }</p>
-                        </div>
-                    </div>
+                    <LatestVideo />
                 </div>
 
                 // Stats Section
