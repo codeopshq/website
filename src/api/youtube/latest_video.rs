@@ -8,10 +8,9 @@ use super::youtube_api::PlaylistItem;
 #[function_component(LatestVideo)]
 pub fn latest_video() -> Html {
     let latest_video = use_state(|| None::<PlaylistItem>);
-    let latest_video_clone = latest_video.clone();
 
     {
-        let latest_video = latest_video_clone;
+        let latest_video = latest_video.clone();
         use_effect_with((), move |_| {
             spawn_local(async move {
                 match fetch_latest_video().await {
