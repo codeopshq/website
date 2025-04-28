@@ -44,7 +44,7 @@ pub fn latest_video() -> Html {
         } else {
             html! {
                 <div class="animate-pulse aspect-video rounded-t-2xl overflow-hidden">
-                    <div class="w-full h-full bg-gray-200 dark:bg-gray-800/40 flex items-center justify-center">
+                    <div class="w-full h-full bg-gray-200 dark:bg-black flex items-center justify-center">
                         <h1 class="text-3xl font-bold text-gray-600 dark:text-gray-400">{"Loading..."}</h1>
                     </div>
                 </div>
